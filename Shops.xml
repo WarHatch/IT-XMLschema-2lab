@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Shop 
+  xmlns:supervisors="https://www.linkedin.com/in/karolisstaskevicius/"
+  xmlns="https://warhatch.github.io/"
+  address="Vilnius Didlaukio g. 49">
+  <Department production="Dairy">
+    <Fridge id="1">
+      <Shelve level="1">
+        <Product
+          name="Belvelderio"
+          type="cheese"
+          producer="Latvijas Piens"
+          bestBy="2018-10-01T08:45:43+00:00"
+          price="2.30"
+        />
+        <Product
+          name="Belvelderio"
+          type="cheese"
+          producer="Latvijas Piens"
+          bestBy="2019-10-01T08:45:43+00:00"
+          price="2.30"
+        />
+        <Product
+          name="Belvelderio"
+          type="cheese"
+          producer="Latvijas Piens"
+          bestBy="2019-10-11T08:45:43+00:00"
+          price="2.30"
+        />
+        <Product
+          name="Gar2 pienas"
+          type="milk"
+          producer="Rokiskio Grietine"
+          bestBy="2016-11-09T08:45:43+00:00"
+          price="0.30"
+        />
+      </Shelve>
+      <Shelve level="2">
+        <Product
+          name="Gar2 pienas"
+          type="milk"
+          producer="Rokiskio Grietine"
+          bestBy="2019-11-09T08:45:43+00:00"
+          price="2.30"
+        />
+        <Product
+          name="Gar2 suris"
+          type="cheese"
+          producer="Rokiskio Grietine"
+          bestBy="2019-03-09T08:45:43+00:00"
+          price="1.30"
+        />
+        <Product
+          name="Gar2 suris"
+          type="cheese"
+          producer="Rokiskio Grietine"
+          bestBy="2019-03-09T08:45:43+00:00"
+          price="1.30"
+        />
+      </Shelve>
+    </Fridge>
+  </Department>
+  <Department production="Cereals">
+    <Section id="1">
+      <Shelve level="1">
+        <Product
+          name="Crispy flakes"
+          type="breakfast cereal"
+          producer="Big corp."
+          bestBy="2028-10-01T08:45:43+00:00"
+          price="4.20"
+        />
+        <Product
+          name="Crispy flakes"
+          type="breakfast cereal"
+          producer="Big corp."
+          bestBy="2028-10-01T08:45:43+00:00"
+          price="4.20"
+        />
+        <Product
+          name="Choco puffs"
+          type="breakfast cereal"
+          producer="Big corp."
+          bestBy="2028-05-01T08:45:43+00:00"
+          price="4.0"
+        />
+        <Product
+          name="Choco puffs"
+          type="breakfast cereal"
+          producer="Big corp."
+          bestBy="2028-06-01T08:45:43+00:00"
+          price="4.0"
+        />
+      </Shelve>
+      <Shelve level="2">
+        <Product
+          name="Trys draugai"
+          type="breakfast cereal"
+          producer="Oho"
+          bestBy="2028-05-01T08:45:43+00:00"
+          price="2.1"
+        />
+        <Product
+          name="Activus cherry porrage"
+          type="porrage"
+          producer="Oho"
+          bestBy="2020-05-01T08:45:43+00:00"
+          price="0.5"
+        />
+        <Product
+          name="Activus chicken porrage"
+          type="porrage"
+          producer="Oho"
+          bestBy="2020-05-03T03:43:00+00:00"
+          price="0.5"
+        />
+      </Shelve>
+    </Section>
+    <Section id="2">
+      <Shelve level="1">
+        <Product
+          name="Activus cherry porrage"
+          type="porrage"
+          producer="Oho"
+          bestBy="2020-05-01T08:45:43+00:00"
+          price="0.5"
+        />
+        <Product
+          name="Activus chicken porrage"
+          type="porrage"
+          producer="Oho"
+          bestBy="2020-05-03T03:43:00+00:00"
+          price="0.5"
+        />
+      </Shelve>
+      <Shelve level="2">
+        <Product
+          name="Activus pear porrage"
+          type="porrage"
+          producer="Oho"
+          bestBy="2020-05-01T08:45:43+00:00"
+          price="0.5"
+        />
+        <Product
+          name="Activus kuskus porrage"
+          type="porrage"
+          producer="Oho"
+          bestBy="2020-05-03T03:43:00+00:00"
+          price="0.59"
+        />
+      </Shelve>
+    </Section>
+  </Department>
+  <supervisors:Department section="Human Resources">
+    <supervisors:Supervisor name="Karolis Staskevicius" />
+  </supervisors:Department>
+</Shop>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <!--Paprastas tipas-->
+  <xs:simpleType name="IdNumber">
+    <xs:restriction base="xs:string">
+      <xs:length value="12" />
+      <xs:pattern value="ID[0-9]{10}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--Sarasas-->
+  <xs:simpleType name="Workers">
+    <xs:list itemType="IdNumber" />
+  </xs:simpleType>
+
+  <!--Paprastas turinys-->
+  <xs:complexType name="Product">
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="type" type="xs:string" />
+    <xs:attribute name="producer" type="xs:string" />
+    <xs:attribute name="price" type="xs:decimal" />
+  </xs:complexType>
+
+  <!--Sudėtingi tipai su paprastu turiniu-->
+  <xs:complexType name="TimeStamped">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="madeOn" type="xs:date"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  
+  <xs:complexType name="Discount">
+    <xs:simpleContent>
+      <xs:extension base="xs:integer">
+        <xs:attribute name="validUntil" type="xs:date"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  
+  <!--išvesti apribojimu (restriction) iš jūsų (ne XML Schema) bazinio tipo-->
+  <xs:complexType name="SmallDiscount">
+    <xs:simpleContent>
+      <xs:restriction base="Discount">
+        <xs:maxInclusive value="30"/>
+      </xs:restriction>
+    </xs:simpleContent>
+</xs:complexType>
+
+  <!--išvesti praplėtimu (extension) iš jūsų bazinio tipo-->
+    <xs:complexType name="Expirable">
+    <xs:simpleContent>
+      <xs:extension base="TimeStamped">
+        <xs:attribute name="expiresOn" type="xs:date"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  
+  
+  
+  
+  
+  
+  
+  <!--<xs:complexType name="MeatProduct">
+    <xs:simpleContent>
+      <xs:restriction base="Product">
+        <xs:attribute name="type">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="chicken"/>
+              <xs:enumeration value="beef"/>
+              <xs:enumeration value="pork"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>-->
+
+
+  <!--<xs:complexType name="ProductWith">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="madeOn" type="xs:dateTime" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>-->
+
+  <!--Sudėtingi tipai su sudėtingu turiniu-->
+  <!--išvesti apribojimu (restriction) iš jūsų bazinio tipo-->
+
+  <!--išvesti praplėtimu (extension) iš jūsų bazinio tipo-->
+
+</xs:schema>
