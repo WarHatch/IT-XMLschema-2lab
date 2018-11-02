@@ -67,19 +67,19 @@
   <!--Sudėtingi tipai su sudėtingu turiniu-->
   <xs:complexType name="SpecialSandwich">
     <xs:sequence>
-      <xs:element name="Bun"/>
-      <xs:element name="Meat" minOccurs="0"/>
       <xs:element name="Salad" minOccurs="0"/>
+      <xs:element name="Meat" minOccurs="0"/>
+      <xs:element name="Bun"/>
     </xs:sequence>
   </xs:complexType>
 
-  <!--išvesti apribojimu (restriction) iš jūsų bazinio tipo-->  
+  <!--išvesti apribojimu (restriction) iš jūsų bazinio tipo-->
   <xs:complexType name="VeganSandwich">
     <xs:complexContent>
       <xs:restriction base="SpecialSandwich">
         <xs:sequence>
-          <xs:element name="Bun"/>
           <xs:element name="Salad"/>
+          <xs:element name="Bun"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -96,33 +96,12 @@
     </xs:complexContent>
   </xs:complexType>
 
-
-
-
-  <!--<xs:complexType name="MeatProduct">
-    <xs:simpleContent>
-      <xs:restriction base="Product">
-        <xs:attribute name="type">
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-              <xs:enumeration value="chicken"/>
-              <xs:enumeration value="beef"/>
-              <xs:enumeration value="pork"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
-      </xs:restriction>
-    </xs:simpleContent>
-  </xs:complexType>-->
-
-
-  <!--<xs:complexType name="ProductWith">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:attribute name="madeOn" type="xs:dateTime" />
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>-->
-
+  <!--Sudėtingas tipas su mišriu turiniu-->
+  <xs:complexType mixed="true" name="Shelve">
+      <xs:all>
+          <xs:element name="Product" type="Product"/> <!--TODO: Check if avle to hold many Products-->
+      </xs:all>
+      <xs:attribute name="level" type="xs:integer"/>
+  </xs:complexType>
 
 </xs:schema>
