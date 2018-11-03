@@ -7,24 +7,65 @@
   <xs:element name="Shop">
     <xs:complexType>
       <xs:sequence>
+        <xs:element name="sales">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TodaysDiscount" type="my:SmallDiscount"/>
+              <xs:element name="SteakExpireOn" type="my:Expirable" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sandwiches">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="mainSandwich" type="my:Sandwich"/>
+              <xs:element name="vegSandwich" type="my:VeganSandwich" />
+              <xs:element name="takeout" type="my:SpecialSandwichTakeout" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="meatToday" type="my:Meat" />
+
+        <xs:element name="Staff">
+          <xs:complexType>
+            <xs:sequence minOccurs="1" maxOccurs="1">
+              <xs:element name="PrimeChef" type="my:Worker"/>
+              <xs:element name="Chef" type="my:Worker"/>
+              <xs:element name="Cleaner" type="my:Worker"/>
+            </xs:sequence>
+          </xs:complexType>
+          <xs:key name="WorkerId">
+            <xs:selector xpath="Worker"/>
+            <xs:field xpath="@IdNumber"/>
+          </xs:key>
+          <xs:keyref name="LinkToOtherWorker" refer="my:WorkerId">
+            <xs:selector xpath="ShiftBuddy"/>
+            <xs:field xpath="@IdNumber"/>
+          </xs:keyref>
+        </xs:element>
       </xs:sequence>
       <xs:attribute name="crew" type="my:WorkersNameList"/>
     </xs:complexType>
   </xs:element>
 
 
+  <!--<xs:complexType name="Product">
+    <xs:attribute name="name" type="my:Name" />
+    <xs:attribute name="type" type="xs:string" />
+    <xs:attribute name="producer" type="xs:string" />
+    <xs:attribute name="price" type="xs:decimal" />
+  </xs:complexType>-->
 
   <!--Paprastas tipas-->
   <xs:simpleType name="IdNumber">
     <xs:restriction base="xs:string">
-      <xs:length value="12" />
-      <xs:pattern value="ID[0-9]{10}" />
+      <xs:pattern value="ID[0-9]{5}" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="Name">
     <xs:restriction base="xs:string">
-      <xs:pattern value="([a-z])*"/>
+      <xs:pattern value="[A-Z]([a-z])+"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -42,10 +83,10 @@
     </xs:simpleContent>
   </xs:complexType>
 
-  <xs:complexType name="Discount">
+  <xs:complexType name="SpecialOffer">
     <xs:simpleContent>
       <xs:extension base="xs:integer">
-        <xs:attribute name="validUntil" type="xs:date"/>
+        <xs:attribute name="validUntil" type="xs:dateTime"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
@@ -53,8 +94,8 @@
   <!--išvesti apribojimu (restriction) iš jūsų (ne XML Schema) bazinio tipo-->
   <xs:complexType name="SmallDiscount">
     <xs:simpleContent>
-      <xs:restriction base="my:Discount">
-        <xs:maxInclusive value="30"/>
+      <xs:restriction base="my:SpecialOffer">
+        <xs:maxInclusive value="100"/>
       </xs:restriction>
     </xs:simpleContent>
   </xs:complexType>
@@ -70,7 +111,7 @@
 
 
   <!--Sudėtingi tipai su sudėtingu turiniu-->
-  <xs:complexType name="SpecialSandwich">
+  <xs:complexType name="Sandwich">
     <xs:sequence>
       <xs:element name="Salad" minOccurs="0"/>
       <xs:element name="Meat" minOccurs="0"/>
@@ -81,7 +122,7 @@
   <!--išvesti apribojimu (restriction) iš jūsų bazinio tipo-->
   <xs:complexType name="VeganSandwich">
     <xs:complexContent>
-      <xs:restriction base="my:SpecialSandwich">
+      <xs:restriction base="my:Sandwich">
         <xs:sequence>
           <xs:element name="Salad"/>
           <xs:element name="Bun"/>
@@ -93,7 +134,7 @@
   <!--išvesti praplėtimu (extension) iš jūsų bazinio tipo-->
   <xs:complexType name="SpecialSandwichTakeout">
     <xs:complexContent>
-      <xs:extension base="my:SpecialSandwich">
+      <xs:extension base="my:Sandwich">
         <xs:sequence>
           <xs:element name="Package"/>
         </xs:sequence>
@@ -107,7 +148,7 @@
       <xs:element name="ShiftBuddy" type="my:Worker" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="name" type="my:Name" />
-    <xs:attribute name="Id" type ="my:IdNumber" />
+    <xs:attribute name="Id" type ="my:IdNumber" use="required"/>
   </xs:complexType>
 
   <!--choice valdymo struktūra-->
@@ -120,7 +161,8 @@
   </xs:complexType>
 
   <!--Bent viena nuoroda (keyref) į unikalumo ribojimą (unique) arba raktą (key)-->
-  <xs:element name="ShiftWorkers">
+  
+  <!--<xs:element name="ShiftWorkers">
     <xs:key name="WorkerId">
       <xs:selector xpath="Worker"/>
       <xs:field xpath="@IdNumber"/>
@@ -129,6 +171,10 @@
       <xs:selector xpath="ShiftBuddy"/>
       <xs:field xpath="@IdNumber"/>
     </xs:keyref>
-  </xs:element>
+  </xs:element>-->
+
+  <xs:complexType name="ShiftBuddy">
+    <xs:attribute name="idref" use="required"/>
+  </xs:complexType>
 
 </xs:schema>

@@ -1,5 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shop xmlns:my="https://github.com/WarHatch/IT-XMLschema-2lab"
          xmlns="https://github.com/WarHatch/IT-XMLschema-2lab"
-         crew="John"
-         ></Shop>
+         crew="Tom Jenna Steve Momo"
+         >
+  <sales xmlns="">
+    <TodaysDiscount validUntil="2018-11-03T15:49:14Z">
+      25
+    </TodaysDiscount>
+    <SteakExpireOn madeOn="2018-11-03" expiresOn="2018-11-03"/>
+  </sales>
+  <sandwiches xmlns="">
+    <mainSandwich>
+      <Salad></Salad>
+      <Meat></Meat>
+      <Bun></Bun>
+    </mainSandwich>
+    <vegSandwich>
+      <Salad></Salad>
+      <Bun></Bun>
+    </vegSandwich>
+    <takeout>
+      <Salad></Salad>
+      <Meat></Meat>
+      <Bun></Bun>
+      <Package></Package>
+    </takeout>
+  </sandwiches>
+  <meatToday xmlns="">
+    <beef></beef>
+  </meatToday>
+  <Staff xmlns="">
+    <PrimeChef name="Tom" Id="ID12345">
+      <ShiftBuddy Id="ID11112"></ShiftBuddy>
+    </PrimeChef>
+    <Chef name="Zom" Id="ID11111"></Chef>
+    <Cleaner name="Dom" Id="ID00000"></Cleaner>
+  </Staff>
+  <!--<Cook xmlns="" name="Tom" Id="ID4564789123">
+    <ShiftBuddy name="Jerry" Id="ID0000000000"/>
+  </Cook>
+  <Cook xmlns="" name="Jerry" Id="ID0000000000">
+    <ShiftBuddy name="Tom" Id="ID4564789123" />
+  </Cook>
+  <Cleaner xmlns="" name="Emanuel" Id="ID1111111111">
+  </Cleaner>-->
+</Shop>
