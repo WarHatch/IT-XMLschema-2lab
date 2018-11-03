@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shop xmlns:my="https://github.com/WarHatch/IT-XMLschema-2lab"
+         xmlns="https://github.com/WarHatch/IT-XMLschema-2lab"
+         crew="John"
+         ></Shop>

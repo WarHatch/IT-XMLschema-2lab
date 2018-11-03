@@ -3,6 +3,16 @@
            targetNamespace="https://github.com/WarHatch/IT-XMLschema-2lab"
            xmlns:my="https://github.com/WarHatch/IT-XMLschema-2lab"
 >
+  <!--Document Venitian Blind Structure-->
+  <xs:element name="Shop">
+    <xs:complexType>
+      <xs:sequence>
+      </xs:sequence>
+      <xs:attribute name="crew" type="my:WorkersNameList"/>
+    </xs:complexType>
+  </xs:element>
+
+
 
   <!--Paprastas tipas-->
   <xs:simpleType name="IdNumber">
@@ -14,16 +24,9 @@
 
   <xs:simpleType name="Name">
     <xs:restriction base="xs:string">
-      <xs:pattern value="([a-z\ ])*"/>
+      <xs:pattern value="([a-z])*"/>
     </xs:restriction>
   </xs:simpleType>
-
-  <xs:complexType name="Product">
-    <xs:attribute name="name" type="my:Name" />
-    <xs:attribute name="type" type="xs:string" />
-    <xs:attribute name="producer" type="xs:string" />
-    <xs:attribute name="price" type="xs:decimal" />
-  </xs:complexType>
 
   <!--Sarasas-->
   <xs:simpleType name="WorkersNameList">
@@ -99,12 +102,12 @@
   </xs:complexType>
 
   <!--Sudėtingas tipas su mišriu turiniu-->
-  <xs:complexType mixed="true" name="Shelve">
-    <xs:all>
-      <xs:element name="Product" type="my:Product"/>
-      <!--TODO: Check if able to hold many Products-->
-    </xs:all>
-    <xs:attribute name="level" type="xs:integer"/>
+  <xs:complexType mixed="true" name="Worker">
+    <xs:sequence>
+      <xs:element name="ShiftBuddy" type="my:Worker" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="my:Name" />
+    <xs:attribute name="Id" type ="my:IdNumber" />
   </xs:complexType>
 
   <!--choice valdymo struktūra-->
@@ -114,14 +117,6 @@
       <xs:element name="beef"/>
       <xs:element name="pork"/>
     </xs:choice>
-  </xs:complexType>
-
-  <xs:complexType mixed="true" name="Worker">
-    <xs:sequence>
-      <xs:element name="ShiftBuddy" type="my:Worker" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
-    <xs:attribute name="name" type="my:Name" />
-    <xs:attribute name="Id" type ="my:IdNumber" />
   </xs:complexType>
 
   <!--Bent viena nuoroda (keyref) į unikalumo ribojimą (unique) arba raktą (key)-->
