@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://github.com/WarHatch/IT-XMLschema-2lab"
+           xmlns:my="https://github.com/WarHatch/IT-XMLschema-2lab"
 >
+
   <!--Paprastas tipas-->
   <xs:simpleType name="IdNumber">
     <xs:restriction base="xs:string">
@@ -15,18 +18,17 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <!--Sarasas-->
-  <xs:simpleType name="Workers">
-    <xs:list itemType="IdNumber" />
-  </xs:simpleType>
-
-  <!--Paprastas turinys-->
   <xs:complexType name="Product">
-    <xs:attribute name="name" type="Name" />
+    <xs:attribute name="name" type="my:Name" />
     <xs:attribute name="type" type="xs:string" />
     <xs:attribute name="producer" type="xs:string" />
     <xs:attribute name="price" type="xs:decimal" />
   </xs:complexType>
+
+  <!--Sarasas-->
+  <xs:simpleType name="WorkersNameList">
+    <xs:list itemType="my:Name" />
+  </xs:simpleType>
 
   <!--Sudėtingi tipai su paprastu turiniu-->
   <xs:complexType name="TimeStamped">
@@ -48,7 +50,7 @@
   <!--išvesti apribojimu (restriction) iš jūsų (ne XML Schema) bazinio tipo-->
   <xs:complexType name="SmallDiscount">
     <xs:simpleContent>
-      <xs:restriction base="Discount">
+      <xs:restriction base="my:Discount">
         <xs:maxInclusive value="30"/>
       </xs:restriction>
     </xs:simpleContent>
@@ -57,7 +59,7 @@
   <!--išvesti praplėtimu (extension) iš jūsų bazinio tipo-->
   <xs:complexType name="Expirable">
     <xs:simpleContent>
-      <xs:extension base="TimeStamped">
+      <xs:extension base="my:TimeStamped">
         <xs:attribute name="expiresOn" type="xs:date"/>
       </xs:extension>
     </xs:simpleContent>
@@ -76,7 +78,7 @@
   <!--išvesti apribojimu (restriction) iš jūsų bazinio tipo-->
   <xs:complexType name="VeganSandwich">
     <xs:complexContent>
-      <xs:restriction base="SpecialSandwich">
+      <xs:restriction base="my:SpecialSandwich">
         <xs:sequence>
           <xs:element name="Salad"/>
           <xs:element name="Bun"/>
@@ -88,7 +90,7 @@
   <!--išvesti praplėtimu (extension) iš jūsų bazinio tipo-->
   <xs:complexType name="SpecialSandwichTakeout">
     <xs:complexContent>
-      <xs:extension base="SpecialSandwich">
+      <xs:extension base="my:SpecialSandwich">
         <xs:sequence>
           <xs:element name="Package"/>
         </xs:sequence>
@@ -98,10 +100,40 @@
 
   <!--Sudėtingas tipas su mišriu turiniu-->
   <xs:complexType mixed="true" name="Shelve">
-      <xs:all>
-          <xs:element name="Product" type="Product"/> <!--TODO: Check if avle to hold many Products-->
-      </xs:all>
-      <xs:attribute name="level" type="xs:integer"/>
+    <xs:all>
+      <xs:element name="Product" type="my:Product"/>
+      <!--TODO: Check if able to hold many Products-->
+    </xs:all>
+    <xs:attribute name="level" type="xs:integer"/>
   </xs:complexType>
+
+  <!--choice valdymo struktūra-->
+  <xs:complexType name="Meat">
+    <xs:choice>
+      <xs:element name="chicken"/>
+      <xs:element name="beef"/>
+      <xs:element name="pork"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType mixed="true" name="Worker">
+    <xs:sequence>
+      <xs:element name="ShiftBuddy" type="my:Worker" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="my:Name" />
+    <xs:attribute name="Id" type ="my:IdNumber" />
+  </xs:complexType>
+
+  <!--Bent viena nuoroda (keyref) į unikalumo ribojimą (unique) arba raktą (key)-->
+  <xs:element name="ShiftWorkers">
+    <xs:key name="WorkerId">
+      <xs:selector xpath="Worker"/>
+      <xs:field xpath="@IdNumber"/>
+    </xs:key>
+    <xs:keyref name="LinkToOtherWorker" refer="my:WorkerId">
+      <xs:selector xpath="ShiftBuddy"/>
+      <xs:field xpath="@IdNumber"/>
+    </xs:keyref>
+  </xs:element>
 
 </xs:schema>
