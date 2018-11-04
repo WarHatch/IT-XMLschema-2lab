@@ -30,18 +30,10 @@
     <beef></beef>
   </meatToday>
   <Staff xmlns="">
-    <PrimeChef name="Tom" Id="ID12345">
-      <ShiftBuddy Id="ID11112"></ShiftBuddy>
-    </PrimeChef>
-    <Chef name="Zom" Id="ID11111"></Chef>
-    <Cleaner name="Dom" Id="ID00000"></Cleaner>
+    <Worker name="Tom" Id="ID12345">
+      <ShiftBuddy idref="ID12345"></ShiftBuddy>
+    </Worker>
+    <Worker name="Zom" Id="ID12346"></Worker>
+    <Worker name="Dom" Id="ID00000"></Worker>
   </Staff>
-  <!--<Cook xmlns="" name="Tom" Id="ID4564789123">
-    <ShiftBuddy name="Jerry" Id="ID0000000000"/>
-  </Cook>
-  <Cook xmlns="" name="Jerry" Id="ID0000000000">
-    <ShiftBuddy name="Tom" Id="ID4564789123" />
-  </Cook>
-  <Cleaner xmlns="" name="Emanuel" Id="ID1111111111">
-  </Cleaner>-->
 </Shop>

@@ -29,18 +29,18 @@
         <xs:element name="Staff">
           <xs:complexType>
             <xs:sequence minOccurs="1" maxOccurs="1">
-              <xs:element name="PrimeChef" type="my:Worker"/>
-              <xs:element name="Chef" type="my:Worker"/>
-              <xs:element name="Cleaner" type="my:Worker"/>
+              <xs:element name="Worker" type="my:Worker"/>
+              <xs:element name="Worker" type="my:Worker"/>
+              <xs:element name="Worker" type="my:Worker"/>
             </xs:sequence>
           </xs:complexType>
           <xs:key name="WorkerId">
             <xs:selector xpath="Worker"/>
-            <xs:field xpath="@IdNumber"/>
+            <xs:field xpath="@Id"/>
           </xs:key>
           <xs:keyref name="LinkToOtherWorker" refer="my:WorkerId">
-            <xs:selector xpath="ShiftBuddy"/>
-            <xs:field xpath="@IdNumber"/>
+            <xs:selector xpath="my:ShiftBuddy"/>
+            <xs:field xpath="@idref"/>
           </xs:keyref>
         </xs:element>
       </xs:sequence>
@@ -145,10 +145,14 @@
   <!--Sudėtingas tipas su mišriu turiniu-->
   <xs:complexType mixed="true" name="Worker">
     <xs:sequence>
-      <xs:element name="ShiftBuddy" type="my:Worker" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="ShiftBuddy" type="my:ShiftBuddy" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="name" type="my:Name" />
     <xs:attribute name="Id" type ="my:IdNumber" use="required"/>
+  </xs:complexType>
+  
+  <xs:complexType mixed="true" name="ShiftBuddy">
+    <xs:attribute name="idref" type ="my:IdNumber" use="required"/>
   </xs:complexType>
 
   <!--choice valdymo struktūra-->
@@ -161,20 +165,6 @@
   </xs:complexType>
 
   <!--Bent viena nuoroda (keyref) į unikalumo ribojimą (unique) arba raktą (key)-->
-  
-  <!--<xs:element name="ShiftWorkers">
-    <xs:key name="WorkerId">
-      <xs:selector xpath="Worker"/>
-      <xs:field xpath="@IdNumber"/>
-    </xs:key>
-    <xs:keyref name="LinkToOtherWorker" refer="my:WorkerId">
-      <xs:selector xpath="ShiftBuddy"/>
-      <xs:field xpath="@IdNumber"/>
-    </xs:keyref>
-  </xs:element>-->
-
-  <xs:complexType name="ShiftBuddy">
-    <xs:attribute name="idref" use="required"/>
-  </xs:complexType>
+  <!--globaliame Shop elemente-->
 
 </xs:schema>
