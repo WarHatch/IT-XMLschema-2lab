@@ -1,3 +1,38 @@
 {
-
+    "$schema": "http://json-schema.json",
+    "sales": {
+        "meatDiscount": 30
+    },
+    "sauces": {
+        "mustard": "nice and yummy until someone turns it into gas",
+        "ketchup": "the most basic out of all basic sauces"
+    },
+    "sandwiches": [
+        {
+            "bun": "0.99",
+            "meat": "Pork",
+            "salad": "1.55",
+            "sauce": "the most basic out of all basic sauces"
+        },
+        {
+            "bun": "0.99",
+            "meat": "Pork",
+            "salad": "1.55",
+            "sauce": {
+                "spices": [ "Pepper", "Garlic" ],
+                "name": "SeeeecretSauce"
+            }
+        }
+    ],
+    "workers": [
+        {
+            "name": "Tom",
+            "phoneNumber": "865658522"
+        },
+        {
+            "name": "Sam",
+            "phoneNumber": "+(370)5555555555555"
+        }
+    ],
+    "supervisorPresent": true
 }
