@@ -6,15 +6,33 @@
             "type": "string",
             "pattern": "^[0-9]+.[0-9]{2}$"
         },
-        "sauces": {
+        "sauceNames": {
             "properties": {
                 "name": {
                     "type": "string"
                 }
             }
+        },
+        "sauce": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/sauceNames"
+                },
+                {
+                    "properties": {
+                        "spices": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": [ "spices" ]
+                }
+            ]
         }
     },
-    "title": "Shop",
+    "title": "FoodShop",
     "type": "object",
     "properties": {
         "sales": {
@@ -27,47 +45,63 @@
                 }
             }
         },
-        "sandwiches": {
+        "order": {
             "type": "array",
+            "minItems": 1,
+            "additionalProperties": false,
             "items": {
-                "type": "object",
-                "properties": {
-                    "bun": {
-                        "$ref": "#/definitions/cost"
-                    },
-                    "meat": {
-                        "type": "string",
-                        "enum": [
-                            "Pork",
-                            "Chicken",
-                            "Beef"
-                        ]
-                    },
-                    "salad": {
-                        "$ref": "#/definitions/cost"
-                    },
-                    "sauce": {
-                        "allOf": [
-                            {
-                               "$ref": "#/definitions/sauces"
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "bun": {
+                                "$ref": "#/definitions/cost"
                             },
-                            {
+                            "meat": {
+                                "type": "object",
                                 "properties": {
-                                    "spices": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "required": [ "spices" ]
+                                    "kind": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pork",
+                                            "Chicken",
+                                            "Beef"
+                                        ]
+                                    },
+                                    "cost": { "$ref": "#/definitions/cost" }
+                                }
+                            },
+                            "salad": {
+                                "$ref": "#/definitions/cost"
+                            },
+                            "sauce": {
+                                "$ref": "#/definitions/sauce"
                             }
-                        ]
+                        },
+                        "required": [ "bun", "salad", "sauce" ],
+                        "additionalProperties": false,
+                        "minItems": 1,
+                        "uniqueItems": true
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "bun": {
+                                "$ref": "#/definitions/cost"
+                            },
+                            "sausage": {
+                                "$ref": "#/definitions/cost"
+                            },
+                            "sauce": {
+                                "$ref": "#/definitions/sauce"
+                            }
+                        },
+                        "required": [ "bun", "sausage", "sauce" ],
+                        "additionalProperties": false,
+                        "minItems": 1,
+                        "uniqueItems": true
                     }
-                },
-                "required": [ "bun", "salad", "sauce" ],
-                "minItems": 1,
-                "uniqueItems": true
+                ]
             }
         },
         "workers": {
@@ -93,7 +127,7 @@
     },
     "required": [
         "sales",
-        "sandwiches",
+        "order",
         "workers",
         "supervisorPresent"
     ]

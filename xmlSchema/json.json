@@ -7,16 +7,27 @@
         "mustard": "nice and yummy until someone turns it into gas",
         "ketchup": "the most basic out of all basic sauces"
     },
-    "sandwiches": [
+    "order": [
         {
             "bun": "0.99",
-            "meat": "Pork",
+            "sausage": "0.99",
+            "sauce": "the most basic out of all basic sauces"
+        },
+        {
+            "bun": "0.99",
+            "meat": {
+                "cost": "0,99",
+                "kind": "Beef"
+            },
             "salad": "1.55",
             "sauce": "the most basic out of all basic sauces"
         },
         {
             "bun": "0.99",
-            "meat": "Pork",
+            "meat": {
+                "cost": "0,99",
+                "kind": "Pork"
+            },
             "salad": "1.55",
             "sauce": {
                 "spices": [ "Pepper", "Garlic" ],
@@ -31,7 +42,7 @@
         },
         {
             "name": "Sam",
-            "phoneNumber": "+(370)5555555555555"
+            "phoneNumber": "+(370)555555"
         }
     ],
     "supervisorPresent": true
