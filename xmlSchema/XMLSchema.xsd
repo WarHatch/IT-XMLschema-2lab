@@ -7,6 +7,7 @@
   <xs:element name="Shop">
     <xs:complexType>
       <xs:sequence>
+        <xs:element name ="fridgeTemperatures" type="my:allowedTemperatureList"/>
         <xs:element name="sales">
           <xs:complexType>
             <xs:sequence>
@@ -44,7 +45,6 @@
           </xs:keyref>
         </xs:element>
       </xs:sequence>
-      <xs:attribute name="crew" type="my:WorkersNameList"/>
     </xs:complexType>
   </xs:element>
 
@@ -70,8 +70,8 @@
   </xs:simpleType>
 
   <!--Sarasas-->
-  <xs:simpleType name="WorkersNameList">
-    <xs:list itemType="my:Name" />
+  <xs:simpleType name="allowedTemperatureList">
+    <xs:list itemType="xs:integer" />
   </xs:simpleType>
 
   <!--Sudėtingi tipai su paprastu turiniu-->

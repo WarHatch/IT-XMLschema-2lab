@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shop xmlns:my="https://github.com/WarHatch/IT-XMLschema-2lab"
          xmlns="https://github.com/WarHatch/IT-XMLschema-2lab"
-         crew="Tom Jenna Steve Momo"
          >
+  <fridgeTemperatures xmlns="">15 6 0 -4</fridgeTemperatures>
   <sales xmlns="">
     <TodaysDiscount validUntil="2018-11-03T15:49:14Z">
       25
