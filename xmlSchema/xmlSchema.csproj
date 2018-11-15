@@ -54,7 +54,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties json_1json__JSONSchema="json-schema.json" json1_1json__JSONSchema="" />
+      <UserProperties json_1json__JSONSchema="json-schema.json" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

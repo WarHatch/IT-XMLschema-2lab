@@ -65,7 +65,8 @@
                                         "enum": [
                                             "Pork",
                                             "Chicken",
-                                            "Beef"
+                                            "Beef",
+                                            1
                                         ]
                                     },
                                     "cost": { "$ref": "#/definitions/cost" }
